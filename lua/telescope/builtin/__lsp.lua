@@ -261,7 +261,8 @@ local function list_or_jump(action, title, funname, params, opts)
           vim.cmd(string.format("%s %s", cmd, item.filename))
         end
         if opts.jump_type == "hover" then
-          vim.api.nvim_open_win(vim.api.bufnr(item.filename), false, {relative = 'cursor', width = 10, height = 2, col = 0, row = 1, anchor = 'NW', style = 'minimal'})
+          local buf = vim.fn.bufadd(item.filename)
+          vim.api.nvim_open_win(buf, false, {relative = 'cursor', width = 10, height = 2, col = 0, row = 1, anchor = 'NW', style = 'minimal'})
         end
       end
 
